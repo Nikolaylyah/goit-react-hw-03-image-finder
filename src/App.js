@@ -99,7 +99,7 @@ class App extends React.Component {
             style={{ textAlign: 'center' }}
           />
         )} */}
-        {images.length > 0 && <Button loadMoreBtn={this.loadMore} />}
+        {images.length !== 0 && !<Button loadMoreBtn={this.loadMore}/>}
         {modalImage && (
           <Modal closeModal={this.closeModal}>
             <img src={modalImage.largeImageURL} alt={modalImage.tags} />
