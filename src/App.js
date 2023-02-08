@@ -100,7 +100,7 @@ class App extends React.Component {
             style={{ textAlign: 'center' }}
           />
         )} */}
-        {images.length < totalHits && !<Button loadMoreBtn={this.loadMore}/>}
+        {images.length < totalHits && <Button loadMoreBtn={this.loadMore}/>}
         {modalImage && (
           <Modal closeModal={this.closeModal}>
             <img src={modalImage.largeImageURL} alt={modalImage.tags} />
