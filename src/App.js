@@ -18,6 +18,7 @@ class App extends React.Component {
     imagesQuery: null,
     images: [],
     modalImage: null,
+    totalHits: null,
     // loading: false,
   };
 
@@ -44,10 +45,10 @@ class App extends React.Component {
         }
         if (pageQuery > 1) {
           this.setState(prevState => ({
-            images: [...prevState.images, ...images.hits],
+            images: [...prevState.images, ...images.hits], totalHits: images.totalHits,
           }));
         } else {
-          this.setState({ images: images.hits });
+          this.setState({ images: images.hits, totalHits: images.totalHits });
         }
       })
       .catch(error => toast.error(error.code))
@@ -84,7 +85,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { images, modalImage } = this.state;
+    const { images, modalImage, totalHits } = this.state;
 
     return (
       <>
@@ -99,7 +100,7 @@ class App extends React.Component {
             style={{ textAlign: 'center' }}
           />
         )} */}
-        {images.length !== 0 && !<Button loadMoreBtn={this.loadMore}/>}
+        {images.length < totalHits && !<Button loadMoreBtn={this.loadMore}/>}
         {modalImage && (
           <Modal closeModal={this.closeModal}>
             <img src={modalImage.largeImageURL} alt={modalImage.tags} />
